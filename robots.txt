@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /mb-tms
+Allow: /
+
+Sitemap: https://www.minbizeed.com/sitemap.xml

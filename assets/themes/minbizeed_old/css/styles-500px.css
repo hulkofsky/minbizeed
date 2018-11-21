@@ -1,0 +1,476 @@
+/**
+ * 500px> website stylesheet xsm
+ *
+ * @package  MinBizeed
+ * @company  Triangle Mena <http://trianglemena.com>
+ * @developer  Maroun Melhem <http://maroun.me>
+ *
+ */
+
+@media (max-width: 500px) {
+    .sign_up_page .sign_up_identifier h1 span,
+    .sign_up_page .sign_in_identifier h1 span,
+    .contact_us_page .contact_us_identifier h1 span{
+        display: block;
+        margin: 9px 0 0;
+    }
+
+    .sign_up_page .sign_up_identifier form,
+    .sign_up_page .sign_in_identifier form {
+        margin: 50px 0 0;
+        padding: 0;
+    }
+
+    .sign_up_page .sign_up_identifier form .submit_wrapper,
+    .sign_up_page .sign_in_identifier form .submit_wrapper {
+        text-align: center;
+    }
+
+    .sign_up_page .sign_up_identifier ,
+    .sign_up_page .sign_in_identifier{
+        padding: 0;
+    }
+
+    .live_auctions_page .page_identifier,
+    .profile_page .auctions_history .page_identifier{
+        text-align: center;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier form,
+    .profile_page .personal_change_fields .password_change_identifier form,
+    .profile_page .personal_info_identifier{
+        padding: 0;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier h1,
+    .profile_page .personal_change_fields .password_change_identifier h1{
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier h1 span,
+    .profile_page .personal_change_fields .password_change_identifier h1 span{
+        margin: 9px 0 0 0;
+        display: block;
+    }
+
+    .live_auctions_page .page_identifier h1,
+    .profile_page .auctions_history .page_identifier h1{
+        margin: 15px 0;
+    }
+
+    .live_auctions_page .page_identifier span,
+    .profile_page .auctions_history .page_identifier span{
+        margin: 9px 0 0;
+    }
+
+    .live_auctions_page .page_identifier .category_filter_wrapper,
+    .profile_page .auctions_history .page_identifier .category_filter_wrapper{
+        display: inline-block;
+        float: none;
+        margin: 0 auto 15px;
+        min-width: 150px;
+        position: relative;
+        text-align: center;
+    }
+
+    .single_product_page .page_identifier {
+        padding: 0;
+        text-align: center;
+    }
+
+    .single_product_page .page_identifier span{
+        margin: 9px 0 0;
+    }
+
+    .single_product_page .page_identifier .category_filter_wrapper {
+        display: inline-block;
+        float: none;
+        margin: 0 auto 20px;
+        min-width: 150px;
+        position: relative;
+        text-align: center;
+    }
+
+    .single_product_page .page_pagination .category_section{
+        width: 100%;
+    }
+
+    .single_product_page .page_pagination .previous_section,
+    .single_product_page .page_pagination .next_section{
+        display: none;
+    }
+
+    .single_product_page .product_information .social_media_wrapper {
+        margin: 3px 0 0;
+        text-align: center;
+    }
+
+    .single_product_page .product_information .social_media_wrapper span{
+        margin: 5px 0 0;
+        padding: 7.5px 13px;
+    }
+
+    .single_product_page .product_information .social_media_wrapper span:nth-child(5) {
+        padding: 7px 29px;
+    }
+
+    .single_product_page .product_information .social_media_wrapper a{
+        margin: 5px 0 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap{
+        margin: 0 auto;
+        max-width: 292px;
+        text-align: center;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap img.guide_image {
+        height: auto;
+        width: 292px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap h5{
+        font-size: 12px;
+        margin: 12px auto 0;
+        max-width: 75%;
+    }
+
+    .how_it_works_page .product_info_wrapper .section_identifier h2 {
+        color: #fff;
+        font-size: 35px;
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .how_it_works_page .how_it_works_identifier h1 span{
+        margin: 9px 0 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap:nth-child(2),
+    .how_it_works_page .guide_wrapper .single_guide_wrap:nth-child(3),
+    .how_it_works_page .guide_wrapper .single_guide_wrap:nth-child(4) {
+        margin: 0 auto;
+    }
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper {
+        padding: 25px 0;
+        top: 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h2 {
+        font-size: 18px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h4 {
+        font-size: 12px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .play_button {
+        max-width: 60px;
+        padding: 7.5% 7% 0 0;
+        right: 0;
+        top: 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one .wrapper_two{
+        padding: 6px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_zero .play_button {
+        max-width: 50px;
+        padding: 3.5px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap{
+        margin: 0 -85px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap img{
+        height: auto;
+        max-width: 85%;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper{
+        top: 1px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper h2 {
+        font-size: 20px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper h4 {
+        font-size: 11px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one .wrapper_two h1 {
+        font-size: 31px;
+        padding: 15.5px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one {
+        padding: 7px;
+    }
+
+    .how_it_works_page .guide_wrapper h5.educational_text{
+        margin: 25px auto 40px;
+        max-width: 90%;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part,
+    .profile_page .personal_info_wrapper .personal_right_part{
+        padding: 0;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_and_description_wrap {
+        left: 0;
+        margin: 0 auto;
+        max-width: 575px;
+        padding: 0 0 0 20px;
+        position: absolute;
+        right: auto;
+        text-align: center;
+        top: 20px;
+    }
+
+    /*    .profile_page .personal_info_wrapper .personal_right_part .image_holder img.profile_image {
+            float: left;
+            max-width: 80px;
+            min-width: 80px;
+        }*/
+
+    /*    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper {
+            float: right;
+            margin: 20px 0 0;
+            padding: 0 0 0 4px;
+            text-align: right;
+        }*/
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder {
+        margin: 30px auto 0;
+        max-width: 485px;
+        position: relative;
+        text-align: center;
+    }/*
+
+    */
+
+    .winners_page .winners_wrapper .shadow_left_overlay, .winners_page .winners_wrapper .shadow_right_overlay {
+        width: 30px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .bids_info_wrapper{
+        margin: 18px 0 0 -45px;
+        max-width: 250px;
+        padding: 17px 10px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .wrapper_one img{
+        width: 100%;
+        border: 5px solid rgb(232, 45, 108);
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .wrapper_one{
+        max-width: 110px;
+        border: 5px solid rgba(232, 45, 108, 0.2);
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap{
+        display: flex;
+        margin: 0 auto;
+        max-width: 290px;
+        text-align: center;
+    }
+    /*
+
+        .profile_page .personal_info_wrapper .personal_right_part .image_holder img.profile_bg {
+            max-width: 293px;
+            min-width: 293px;
+        }*/
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper span.balance_label {
+        color: #fff;
+        float: left;
+        font-family: "myriad_pro_regular";
+        font-size: 10px;
+        margin: 0px 13px 0 0;
+        text-align: right;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .buy_bids_wrapper a{
+        font-size: 16px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper h1 {
+        border-right: 6px solid #fff;
+        color: #fff;
+        float: left;
+        font-size: 26px;
+        line-height: 0.8;
+        margin: 0;
+        padding: 0 5px 0 0;
+        text-align: right;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper h1 span {
+        border-right: 5px solid #e02b68;
+        color: #b1b1b1;
+        display: block;
+        font-size: 9px;
+        margin: 0 -10px 0 0;
+        padding: 10px 6px 0 0;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper .bids_img {
+        margin: 0 0 0 -35px;
+        max-width: 29%;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .buy_bids_wrapper {
+        float: left;
+        margin: -20px 0 0 11px;
+        max-width: 100%;
+    }
+
+    .top_menu_bar .left_top_menu_bar.signed_in .pointless, .top_menu_bar .right_top_menu_bar .pointless {
+        color: #969696;
+        font-size: 10px;
+        margin: 0 5px;
+    }
+
+    .top_menu_bar .left_top_menu_bar.signed_in h5.bids_number {
+        color: #d7406c;
+        font-size: 15px;
+        margin: 12px 0 0;
+        vertical-align: top;
+    }
+
+    .contact_us_page{
+        padding: 20px 0 60px;
+    }
+
+    .top_menu_bar .left_top_menu_bar h5{
+        font-size: 14px;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 7.5px 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul,
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu{
+        opacity: 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li a{
+        margin: 8.5px 0;
+        font-size: 18px;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5 {
+        border-top: 5px solid transparent;
+        display: inline-block;
+        font-size: 14px;
+        margin: 0 8px;
+        padding: 7px 0 12px;
+        transition: all 0.6s ease 0s;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap .single_bid_wrapper {
+        min-height: 228px;
+    }
+
+    .footer .bids_wrapper .biddings_wraps,
+    .profile_page .auctions_history{
+        padding: 0;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(1) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(2) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(3) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(4) .single_bid_wrapper{
+        max-width: 130px;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap{
+        padding: 10px;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap .single_bid_wrapper .bid_title{
+        font-size: 15px;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap .single_bid_wrapper .bid_amount{
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 350px) {
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap .pricing_wrapper h6{
+        margin: 0 35px;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap .time_holder img {
+        margin: 0 0 0 35px;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap .description_holder p{
+        padding: 0 35px;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap .biding_holder img {
+        margin: 7px 0 0 35px;
+    }
+
+    .contact_us_page .contact_us_section .required_fields_identify img,
+    .sign_up_page .sign_up_identifier .required_fields_identify img,
+    .sign_up_page .sign_in_identifier .required_fields_identify img{
+        width: 100%;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper a.bid_now_button {
+        margin: -1px 0 0;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap,
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper .auction_wrap{
+        margin: 0 auto;
+        max-width: 332px;
+        min-width: 250px;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap .pricing_wrapper h6 {
+        margin: 0 35px;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap .time_holder img,
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap .biding_holder img{
+        left: 16%;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap .description_holder p{
+        padding: 0 50px;
+    }
+
+    .single_product_page .product_information .product_info_wrapper h3{
+        font-size: 20px;
+    }
+
+    .single_product_page .product_information .pricing_wrapper h3,
+    .single_product_page .product_information .pricing_wrapper .triangle-right{
+        font-size: 22px;
+    }
+
+    .single_product_page .product_information .bidding_info_wrapper .bid_cost .bids_ribbon,
+    .single_product_page .product_information .bidding_info_wrapper .your_bids .bids_ribbon{
+        font-size: 11px;
+    }
+
+    .single_product_page .product_preview .small_images_holder .small_image_wrapper:nth-child(2) {
+        margin: 0 7px;
+    }
+
+    .winners_page .winners_wrapper .shadow_left_overlay, .winners_page .winners_wrapper .shadow_right_overlay {
+        width: 10px;
+    }
+}

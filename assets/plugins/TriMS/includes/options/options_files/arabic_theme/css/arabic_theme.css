@@ -1,0 +1,13 @@
+/**
+ * arabic theme css
+ *
+ * @package  TriMS
+ * @company  Triangle Mena <http://trianglemena.com>
+ * @developer  Maroun Melhem <http://maroun.me>
+ * @version 1.0
+ *
+ */
+.TriMS-admin-theme #wpbody-content #poststuff #titlewrap #title,.TriMS-admin-theme #wpbody-content #poststuff #titlewrap #title-prompt-text{
+    direction: rtl;
+    right:0;
+}

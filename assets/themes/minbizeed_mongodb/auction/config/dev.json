@@ -1,0 +1,26 @@
+{
+  "APP": {
+    "BASE_URL": "http://trendingbid.local/",
+    "REQUEST_TOKEN": "DEV_TEST",
+    "WORKERS": 3,
+    "START_PORT": 7000,
+    "LOGS": {
+      "PATH": "logs/",
+      "MAX_SIZE": 10000000
+    }
+  },
+  "REDIS": {
+    "hostname": "127.0.0.1",
+    "port": "6379"
+  },
+  "DATABASE": {
+    "connectionLimit": 100,
+    "user": "root",
+    "password": "",
+    "database": "trendingbid",
+    "port": 3306
+  },
+  "SERVER": {
+    "https": false
+  }
+}

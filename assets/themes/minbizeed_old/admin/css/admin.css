@@ -1,0 +1,73 @@
+/*Admin stats start*/
+
+#wpbody a.btn {
+    color: #fff !important;
+}
+
+.admin_stats {
+    margin: 30px 0 0;
+    font-family: 'Verdana' !important;
+}
+
+.admin_stats .container {
+    padding: 0px;
+    margin: 0px;
+}
+
+.admin_stats .multisections {
+    padding: 0 0 30px;
+    margin: 0 0 45px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.admin_stats .packages {
+    margin: 0 0 45px;
+    padding: 0 45px;
+}
+
+.admin_stats .panel-body {
+    padding: 0px;
+}
+
+.admin_stats .ajax_loader {
+    margin: 15px 0 0 10px;
+    display: none;
+}
+
+.admin_stats .return_message {
+    display: none;
+}
+
+.admin_stats .return_message p {
+    margin: 20px 0 10px;
+}
+
+.admin_stats .return_message .success {
+    color: #42AD42;
+}
+
+.admin_stats .return_message .error {
+    color: #FB4646;
+}
+
+.admin_stats {
+    background: #fff;
+    box-shadow: /* The top layer shadow */ 0 -1px 1px rgba(0, 0, 0, 0.15),
+        /* The second layer */ 0 -10px 0 -5px #eee,
+        /* The second layer shadow */ 0 -10px 1px -4px rgba(0, 0, 0, 0.15),
+        /* The third layer */ 0 -20px 0 -10px #eee,
+        /* The third layer shadow */ 0 -20px 1px -9px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.admin_stats h3 {
+    text-align: center;
+    margin: 0 0 45px;
+}
+
+.admin_stats .holder {
+    margin: 30px 0 0;
+}
+
+/*Admin stats end*/

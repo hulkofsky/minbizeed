@@ -1,0 +1,31 @@
+{
+  "APP": {
+    "BASE_URL": "http://minbiz.local",
+    "REQUEST_TOKEN": "DEV_TEST",
+    "WORKERS": 3,
+    "START_PORT": 7000,
+    "LOGS": {
+      "PATH": "logs/",
+      "MAX_SIZE": 10000000
+    }
+  },
+  "REDIS": {
+    "hostname": "127.0.0.1",
+    "port": 6379
+   
+  },
+  "DATABASE": {
+    "connectionLimit": 100,
+    "user": "root",
+    "password": "root",
+    "database": "minbiz",
+    "port": "/var/run/mysqld/mysqld.sock"
+  },
+  "SERVER": {
+    "https": false,
+    "ssl": {
+      "key": "/etc/nginx/ssl/trendingbid_com.key",
+      "cert": "/etc/nginx/ssl/trendingbid_com.crt"
+    }
+  }
+}

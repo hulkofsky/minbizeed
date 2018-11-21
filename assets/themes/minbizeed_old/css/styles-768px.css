@@ -1,0 +1,365 @@
+/**
+ * 768px> website stylesheet xsm
+ *
+ * @package  MinBizeed
+ * @company  Triangle Mena <http://trianglemena.com>
+ * @developer  Maroun Melhem <http://maroun.me>
+ *
+ */
+@media (max-width: 768px) {
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap {
+        margin: 0 auto;
+        max-width: 325px;
+    }
+
+    .top_site_section .middle_menu_bar .mobile_button_wrapper{
+        text-align: center;
+        display: block;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li.how_it_works_opened img.bottom_arrow{
+        opacity: 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .how_it_works_section{
+        display: none;
+    }
+
+    .top_site_section .middle_menu_bar .mobile_button_wrapper span{
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #e82d6c;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        color: #e82d6c;
+        display: inline-block;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: -1px 0 0;
+        padding: 4px 15px;
+        min-width: 80px;
+        height: 35px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .top_site_section .middle_menu_bar .mobile_button_wrapper span i{
+        font-size: 23px;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar{
+        display: none;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu{
+        color: #9f9f9f;
+        padding: 0;
+        text-align: center;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li:hover img.top_arrow,
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li:focus img.top_arrow{
+        opacity: 0;
+        -webkit-transition: all 0.6s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-transition: all 0.6s; /* Firefox < 16 */
+        -ms-transition: all 0.6s; /* Internet Explorer */
+        -o-transition: all 0.6s; /* Opera < 12.1 */
+        transition: all 0.6s;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li{
+        display: block;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar ul li.active img.top_arrow{
+        opacity: 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu{
+        display: block;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu .pointless {
+        margin: 0;
+        color: #969696;
+        font-size: 10px;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5 a,
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5 a,
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5 {
+        color: #9f9f9f;
+        margin: 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5.top_menu_active:nth-child(5) {
+        border-top: medium none;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5.top_menu_active {
+        border-top: 5px solid #e82d6c;
+        color: #000;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .mobile_menu h5 {
+        border-top: 5px solid transparent;
+        display: inline-block;
+        font-size: 16px;
+        margin: 0 15px;
+        padding: 7px 0 12px;
+        transition: all 0.6s ease 0s;
+    }
+
+    .top_menu_bar .right_top_menu_bar{
+        display: none;
+    }
+
+    .top_menu_bar .left_top_menu_bar {
+        padding: 0 0 10px;
+        text-align: center;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper a.bid_now_button{
+        margin: -1px 0 0 5px;
+    }
+
+    .contact_us_page .auction_example.auction_wrapper {
+        margin: 35px 0 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper{
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(2),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(4),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(6),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(1),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(3),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(5),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(2),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(4),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(6),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(1),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(3),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(5){
+        padding: 0;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper .auction_wrap,
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper .auction_wrap{
+        margin: 0 auto;
+        max-width: 332px;
+        min-width: 332px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .prizes_wrapper .bades_wrap {
+        float: left;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .prizes_wrapper h5 {
+        display: inline-block;
+        margin: 0;
+        width: auto;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder {
+        margin: 30px auto 0;
+        max-width: 485px;
+        position: relative;
+        text-align: center;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder img.profile_bg {
+        max-width: 440px;
+        min-width: 440px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_and_description_wrap {
+        left: 0;
+        margin: 0 auto;
+        max-width: 580px;
+        padding: 0 0 0 25px;
+        position: absolute;
+        right: auto;
+        text-align: center;
+        top: 23px;
+    }
+
+    .top_site_section .top_identity_banner img{
+        margin: -12px 0 0;
+        max-width: 24%;
+        min-width: 183px;
+    }
+
+    /*    .profile_page .personal_info_wrapper .personal_right_part .image_holder img.profile_image {
+            float: left;
+            max-width: 132px;
+            min-width: 132px;
+        }*/
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper {
+        float: right;
+        margin: 38px 0 0 10px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper h1 {
+        border-right: 6px solid #fff;
+        color: #fff;
+        float: left;
+        font-size: 34px;
+        line-height: 0.8;
+        margin: 0;
+        padding: 0 20px 0 0;
+        text-align: right;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper span.balance_label{
+        margin: 10px 20px 0 0;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper .bids_img {
+        margin: 0 0 0 18px;
+        max-width: 28%;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .buy_bids_wrapper {
+        max-width: 385px;
+        margin: -46px 0 0;
+    }
+
+    .single_product_page .product_preview {
+        padding: 0;
+        text-align: center;
+    }
+
+    .single_product_page .product_preview .large_image_holder {
+        max-width: 332px;
+        width: 100%;
+    }
+
+    .single_product_page .product_preview .small_images_holder {
+        display: inline-block;
+        margin: 10px 0 0;
+        max-width: 332px;
+    }
+
+    .single_product_page .product_preview .small_images_holder .small_image_wrapper {
+        max-width: 31.1%;
+    }
+
+    .single_product_page .product_information {
+        margin: 15px 0;
+        padding: 0;
+    }
+
+    .single_product_page .product_tech_specs {
+        margin: 0;
+        padding: 0;
+    }
+
+    .single_product_page .product_tech_specs .tech_specs_wrapper{
+        margin: 0 auto;
+        max-width: 332px;
+        width: 100%;
+    }
+
+    .single_product_page .product_tech_specs .tech_specs_wrapper .read_more_button{
+        max-width: 332px;
+    }
+
+    .single_product_page .product_information .product_information_wrapper {
+        margin: 0 auto;
+        max-width: 332px;
+        width: 100%;
+    }
+
+    .single_product_page .product_information .bidding_info_wrapper .your_bids .bids_ribbon {
+        padding: 2px 18px;
+    }
+
+    .single_product_page .product_information .bidding_info_wrapper .bid_cost .bids_ribbon {
+        padding: 2px 12px;
+    }
+
+    .single_product_page .product_information .social_media_wrapper span:nth-child(5) {
+        padding: 6px 6px 7px 48.5px;
+    }
+
+    .single_product_page .page_pagination .next_section {
+        padding: 0 10px 0 0;
+        text-align: right;
+    }
+
+    .single_product_page .page_pagination .previous_section {
+        padding: 0 0 0 10px;
+        text-align: left;
+    }
+
+    .how_it_works_page .product_info_wrapper img.bigger_image{
+        display: none;
+    }
+
+    .how_it_works_page .product_info_wrapper img.smaller_image{
+        display: block;
+    }
+
+    .how_it_works_page .guide_wrapper{
+        padding: 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper {
+        padding: 10% 0;
+        top: 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h2 {
+        font-size: 25px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h4 {
+        font-size: 14px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .play_button {
+        padding: 10% 10% 0 0;
+        right: 0;
+        top: 0;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap{
+        width: 100%;
+        margin: 0 -155px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap img{
+        width: 84%;
+        max-width: 100%;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap{
+        padding: 10px;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(1) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(2) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(3) .single_bid_wrapper,
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap:nth-child(4) .single_bid_wrapper{
+        max-width: unset;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap{
+        margin: 30px 0 0;
+    }
+}
+
+@media (max-width: 620px) {
+    .how_it_works_page .guide_wrapper .single_guide_wrap .play_button {
+        padding: 9.5% 9.5% 0 0;
+        right: 0;
+        top: 0;
+    }
+}
+

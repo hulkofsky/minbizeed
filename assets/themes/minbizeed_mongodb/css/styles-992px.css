@@ -1,0 +1,276 @@
+/**
+ * 992px> website stylesheet xsm
+ *
+ * @package  MinBizeed
+ * @company  Triangle Mena <http://trianglemena.com>
+ * @developer  Maroun Melhem <http://maroun.me>
+ *
+ */
+
+@media (max-width: 992px) {
+    .contact_us_page .auction_example.auction_wrapper .auction_wrap {
+        margin: 0 0 0 40px;
+    }
+
+    .contact_us_page .contact_us_section {
+        margin: 35px 0 0;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .contact_us_page .contact_us_section .required_fields_identify {
+        text-align: center;
+    }
+
+    .contact_us_page .contact_us_section .required_fields_identify img{
+        float: none;
+    }
+
+    .contact_us_page .contact_us_section .required_identify{
+        float: left;
+        margin: 20px 0 25px;
+    }
+
+    .sign_up_page .sign_up_identifier, .sign_up_page .sign_in_identifier {
+        margin: 50px 0 0;
+        padding: 0 10px;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(2),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(4),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(6),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(2),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(4),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(6){
+        padding: 0 0 0 10px;
+    }
+
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(1),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(3),
+    .live_auctions_page .all_auctions_wrapper .auction_wrapper:nth-child(5),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(1),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(3),
+    .profile_page .auctions_history .all_auctions_wrapper .auction_wrapper:nth-child(5){
+        padding: 0 10px 0 0;
+    }
+
+    .single_product_page .product_information .social_media_wrapper span:nth-child(5) {
+        padding: 6px 6px 6px 69.5px;
+    }
+
+    .single_product_page .product_tech_specs {
+        margin: 30px 0 0;
+        padding: 0;
+    }
+
+    .single_product_page .product_preview .small_images_holder .small_image_wrapper {
+        max-width: 31.4%;
+    }
+
+    .single_product_page .product_preview .large_image_holder {
+        width: 100%;
+    }
+
+    .single_product_page .product_information .bidding_info_wrapper .your_bids .bids_ribbon {
+        padding: 2px 20px;
+    }
+
+    .single_product_page .product_information .bidding_info_wrapper .bid_cost .bids_ribbon {
+        padding: 2px 15px;
+    }
+
+    .single_product_page .product_information .bid_now_wrapper a.bid_now_button {
+        margin: -1px 60px 0;
+    }
+
+    .how_it_works_page .product_info_wrapper img {
+        margin: 40px 0 20px 0;
+        max-width: 100%;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .play_button {
+        right: 10%;
+        top: 26%;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper{
+        top: 26%;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h2{
+        font-size: 35px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap .text_wrapper h4{
+        font-size: 14px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one{
+        padding: 15px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper{
+        top: 10px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper h2{
+        font-size: 30px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap .text_wrapper h4,
+    .how_it_works_page .guide_wrapper h5.educational_text{
+        font-size: 13px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .middle_section_wrap img {
+        max-width: 66%;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one .wrapper_two{
+        padding: 6px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_zero .play_button{
+        padding: 32.5px;
+    }
+
+    .how_it_works_page .guide_wrapper .single_guide_wrap2 .wrapper_one .wrapper_two h1{
+        padding: 32.5px;
+        font-size: 48px;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier h1,
+    .profile_page .personal_change_fields .password_change_identifier h1{
+        font-size: 28px;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier h1 span,
+    .profile_page .personal_change_fields .password_change_identifier h1 span{
+        margin: 0 0 0 15px;
+    }
+
+    .profile_page .personal_change_fields .personal_info_identifier form,
+    .profile_page .personal_change_fields .password_change_identifier form{
+        padding: 0 5px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part {
+        padding: 25px 15px 0;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .name_wrapper span{
+        margin: 0;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .name_wrapper h1 {
+        font-size: 25px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .prizes_wrapper h5 {
+        display: block;
+        margin: 10px 0 0;
+        width: 100%;
+    }
+
+    .profile_page .personal_info_wrapper .personal_left_part .prizes_wrapper .bades_wrap {
+        float: none;
+    }
+
+    /*    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_and_description_wrap {
+            left: 23px;
+            margin: 0 auto;
+            max-width: 575px;
+            position: absolute;
+            right: auto;
+            text-align: center;
+            top: 23px;
+        }
+
+        .profile_page .personal_info_wrapper .personal_right_part .image_holder img.profile_image {
+            float: left;
+            max-width: 32%;
+        }
+
+        .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper {
+            float: right;
+            margin: 38px 0 0;
+        }
+    */
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper h1 span{
+        font-size: 16px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper h1 {
+        font-size: 40px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .wrapper_one{
+        border: 15px solid rgba(232, 45, 108, 0.2);
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .wrapper_one img{
+        max-width: 100%;
+    }
+
+    /*
+
+    */
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper .bids_img {
+        margin: 0 0 0 27px;
+        max-width: 65px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .image_wrap .bids_info_wrapper{
+        margin: 53px 0 0 -90px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .bids_info_wrapper span.balance_label{
+        font-size: 12px;
+    }
+
+    .profile_page .personal_info_wrapper .personal_right_part .image_holder .buy_bids_wrapper {
+        max-width: 340px;
+        margin: -46px 0 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .how_it_works_section{
+        height: 113px;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .how_it_works_section .how_it_works_wrap h1 a{
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 24px;
+        margin: 12px 0 0;
+    }
+
+    .top_site_section .middle_menu_bar .center_middle_menu_bar .how_it_works_section .how_it_works_wrap h5 {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 13px;
+        margin: 0;
+    }
+
+    .footer .footer_bottom_part .left_part ,
+    .footer .footer_bottom_part .right_part {
+        text-align: center;
+    }
+
+    .footer .footer_bottom_part h5{
+        margin: 5px;
+    }
+
+    .footer .footer_menu_part ul li {
+        display: inline-block;
+        min-width: 100px;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .footer .footer_menu_part ul li:nth-last-child(1) {
+        margin: 0;
+    }
+
+    .footer .footer_buy_part .bids_wrapper .single_bid_wrap .single_bid_wrapper{
+        min-height: 256px;
+    }
+}

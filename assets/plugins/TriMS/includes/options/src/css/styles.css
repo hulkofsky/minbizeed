@@ -1,0 +1,25 @@
+/**
+ * Plugin CSS
+ *
+ * @package  mm-dashboard-sharing
+ * @developer  Maroun Melhem <http://maroun.me>
+ * @version 2.0
+ *
+ */
+
+.trims_plugin_options h1 {
+    color: #C92432 !important;
+    text-align: center !important;
+}
+
+.trims_plugin_options h2 {
+    color: #C92432 !important;
+}
+
+.trims_plugin_options .settings_form {
+    margin: 40px 0 !important;
+}
+
+.trims_plugin_options .trims_hidden {
+    display: none !important;
+}

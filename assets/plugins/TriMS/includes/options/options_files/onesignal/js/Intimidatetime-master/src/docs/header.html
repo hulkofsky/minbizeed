@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html> 
+	<head> 
+		<meta charset="UTF-8" />
+
+		<title>Intimidatetime - jQuery and Zepto datetime picker</title>
+		<meta name="Description" content="The home page of Intimidatetime, the best datetime picker you'll ever meet" />
+		<meta name="Keywords" content="jquery, zepto, date, time, picker" />
+
+		
+		<style type="text/css">
+			body,img,p,h1,h2,h3,h4,h5,h6,form,table,td,ul,ol,li,dl,dt,dd,pre,blockquote,fieldset,label{
+				margin:0;
+				padding:0;
+				border:0;
+			}
+			body{ background-color: #f8f7ec; border-top: solid 10px #777; font: 90% Helvetica, sans-serif; padding: 20px; }
+			h1,h2,h3,h4{ margin: 10px 0; font-family: Plantin, "Plantin std", "Plantin", "Baskerville", Georgia, "Times New Roman", serif; font-weight: normal; }
+			h1{font-size: 2.2em;margin: 0 0 20px 0; }
+			h2{ background-color: #D95656; line-height: 18px; font-size: 18px; letter-spacing: 1px; padding: 5px 10px; margin: 10px 0 10px -60px; color: #fff; display: inline-block; border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; }
+			h3{ color: #D95656; font-size: 18px; letter-spacing: 1px;  margin: 10px 0 10px -20px; }
+			h4{ color: #777; font-size: 18px; letter-spacing: 1px; }
+			p{ margin: 10px 0; line-height: 150%; }
+			a{ color: #7b94b2; }
+			ul,ol{ margin: 10px 0 10px 40px; }
+			li{ margin: 4px 0; }
+			dl{ margin: 10px 0; }
+			dl dt{ font-weight: bold; line-height: 20px; margin: 10px 0 0 0; }
+			dl dd{ margin: -20px 0 10px 120px; padding-bottom: 10px; border-bottom: solid 1px #eee;}
+			pre{ font-size: 12px; line-height: 16px; padding: 5px 5px 5px 10px; margin: 10px 0; background-color: #e4f4d4; border-left: solid 5px #9EC45F; overflow: auto; tab-size: 4; -moz-tab-size: 4; -o-tab-size: 4; -webkit-tab-size: 4; }
+			input,select,textarea{ font-family: Consolas, monaco, monospace; font-size: 1rem; background-color: #ffffff; border: solid 1px #D2E1DE; 
+				-webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;
+				border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; }
+			input:focus, select:focus, textarea:focus{ border: solid 1px #ff958d; }
+
+			.wrapper{ background-color: #ffffff; width: 600px; border: solid 1px #eeeeee; padding: 20px 20px 20px 40px; margin: 0 auto; border-radius: 6px; -moz-border-radius: 6px;-webkit-border-radius: 6px; }
+			.header{ text-align: center;position: relative; margin: 0 -20px 0 -40px; }
+			
+			.header h1 span:before{ content: ''; display: block; width: 100%; }
+			.header h1 span{ font-size: 65%;  }
+			.header ul.nav{ margin: 10px 0; display: block; }
+			.header ul.nav > li{ position: relative; display: inline-block; list-style: none; padding: 10px 0; width: 80px; }
+			.header ul.nav > li > a{ text-transform: uppercase; color: #777; text-decoration: none; font-size: 12px; }
+			.header ul.nav > li > a:hover{ color: #555; }
+			.header ul.nav > li > ul{ display: none; padding: 10px; background-color: #777; text-align: left; border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; }
+			.header ul.nav > li > ul li{ display: block; width: 80px; }
+			.header ul.nav > li > ul li a{ color: #fff; text-decoration: none; font-size: 12px; }
+			.header ul.nav > li:hover > ul{ display: inline-block; position: absolute; top: 15px; left: -40px; }
+			
+			.header ul.scrollnav{ position: fixed; top: 0px; left: 50%; z-index: 9999999; background-color: #777; display: none; margin: 0 0 0 -254px; border-radius: 0 0 0 6px; -moz-border-radius: 0 0 0 6px;-webkit-border-radius: 0 0 0 6px;}
+			.header ul.scrollnav li a{ color: #fff; }
+			.header ul.scrollnav li a:hover{ color: #eee; }
+			.header ul.scrollnav.scrolled{ display: inline; }
+
+			.footer{ color: #777; margin: 20px 0 0 0; border-top: double 3px #ccc; font-size: 11px; }
+			.clear{ clear: both; }
+			
+			.methoddl dd{ margin-top: 0; }
+			.example-container{ border-bottom: double 3px #ccc; margin: 0 0 20px 0; padding: 0 0 20px 0; }
+			.example-container input[type='text']{ padding: 8px 10px 9px 10px; width: 100%; }
+			.example-container button{ border: none; color: #fff; padding: 4px 8px; background-color: #9ec45f; border-radius: 4px; -moz-border-radius: 4px;-webkit-border-radius: 4px; }
+
+			.ebook{ background: #333 url(http://trentrichardson.com/wp-content/uploads/2013/10/handling-time-ebook.jpg) 10px 25px no-repeat; border-top: solid 4px #ddd; border-bottom: solid 4px #ddd; height: 210px; color: #eee; margin: 0 -20px 0 -40px; padding: 20px 20px 20px 200px; }
+			.ebook h3{ color: #fff; margin: 10px 0; font-size: 28px; }
+			.ebook p a{ color: #9EC45F; }
+			.ebook .buyp a iframe{ margin-bottom: -10px; }
+
+			dl.dl-options dd{ margin: -18px 0 10 150px; }
+			dl.dl-formatting dd{ margin: -18px 0 10px 80px; }
+			dl.dl-methods > dd{ margin: 5px 0 20px 40px; }
+			dl.dl-methodopts dt{ font-weight: normal; font-style: italic; }
+			dl.dl-methodopts dd{ margin: -18px 0 10px 80px; }
+		</style> 
+		
+		<link rel="stylesheet" media="all" type="text/css" href="Intimidatetime.css" />
+				
+	</head> 
+	<body> 
+		<div class="wrapper">
+			<div class="header">
+				<h1>Intimidatetime <span>Date Time Picker for jQuery and Zepto<span></h1> 
+
+				<ul class="nav">
+					<li><a href="#Introduction" title="Introduction">Intro</a></li>
+					<li><a href="#Options" title="Options">Options</a></li>
+					<li><a href="#Methods" title="Methods">Methods</a>
+							<ul>
+								<li><a href="#Instance-Methods" title="Instance Methods">Instance</a></li>
+								<li><a href="#Utility-Methods" title="Utility Methods">Utility</a></li>
+							</ul>
+						</li>
+					<li><a href="#Events" title="Events">Events</a></li>
+					<li><a href="#Formatting" title="Formatting">Format</a></li>
+					<li><a href="#I18n" title="Internationalization">I18n</a></li>
+					<li><a href="#Examples" title="Examples">Examples</a>
+							<ul>
+								<li><a href="#Examples-Basics" title="Basics">Basics</a></li>
+								<li><a href="#Examples-Timezones" title="Timezones">Timezones</a></li>
+								<li><a href="#Examples-Ranges" title="Ranges">Ranges</a></li>
+							</ul>
+						</li>
+				</ul>
+			</div>
+
+			<div class="content">

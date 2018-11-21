@@ -1,0 +1,81 @@
+/**
+ * Plugin CSS
+ *
+ * @package  mm-dashboard-sharing
+ * @developer  Maroun Melhem <http://maroun.me>
+ * @version 2.11
+ *
+ */
+
+#wpbody .wrap .wp-list-table .column-mm_post_sharing {
+    color: #C92432 !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns span {
+    font-size: 30px !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_tw {
+    margin: 0 17px !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_fb {
+    color: #3b5998 !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_fb:hover,#wpbody .wrap .wp-list-table  .mm_post_sharing .mmds_btns.mmds_btns_fb:focus {
+    color: #5674b3 !important;
+}
+
+.mm_post_sharing .mmds_btns.mmds_btns_tw {
+    color: #00aced !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_tw:hover,#wpbody .wrap .wp-list-table  .mm_post_sharing .mmds_btns.mmds_btns_tw:focus {
+    color: #29d5f1 !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_gp {
+    color: #d34836 !important;
+}
+
+#wpbody .wrap .wp-list-table .mm_post_sharing .mmds_btns.mmds_btns_gp:hover,#wpbody .wrap .wp-list-table  .mm_post_sharing .mmds_btns.mmds_btns_gp:focus {
+    color: #fa6f5d !important;
+}
+
+.mmds_plugin_options h1 {
+    color: #C92432 !important;
+    text-align: center !important;
+}
+
+.mmds_plugin_options h2 {
+    color: #C92432 !important;
+}
+
+.mmds_plugin_options .desc {
+    color: #5c5c5c !important;
+    font-size: 13px !important;
+    font-style: italic !important;
+    text-align: center !important;
+}
+
+.mmds_plugin_options .credits {
+    border-bottom: 1px solid #eeecec !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 20px !important;
+    text-align: right !important;
+    font-weight: bold !important;
+}
+
+.mmds_plugin_options .credits a {
+    text-decoration: none !important;
+    color: #C92432 !important;
+}
+
+.mmds_plugin_options .settings_form {
+    margin: 40px 0 !important;
+}
+
+.mmds_plugin_options .mmds_hidden {
+    display: none !important;
+}

@@ -1,0 +1,13 @@
+/**
+ * Mourning theme CSS
+ *
+ * @package  mm-dashboard-sharing
+ * @developer  Maroun Melhem <http://maroun.me>
+ * @version 2.0
+ *
+ */
+
+.black_n_white {
+    -webkit-filter: grayscale(100%) !important; /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%) !important;
+}

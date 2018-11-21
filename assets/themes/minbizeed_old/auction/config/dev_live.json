@@ -1,0 +1,31 @@
+{
+  "APP": {
+    "BASE_URL": "http://test.dev.minbizeed.com/",
+    "REQUEST_TOKEN": "DEV_TEST",
+    "WORKERS": 3,
+    "START_PORT": 7000,
+    "LOGS": {
+      "PATH": "logs/",
+      "MAX_SIZE": 10000000
+    }
+  },
+  "REDIS": {
+    "hostname": "127.0.0.1",
+    "port": 6379,
+    "password": "T6[hG[AZjcfs7L"
+  },
+  "DATABASE": {
+    "connectionLimit": 100,
+    "user": "tb_test",
+    "password": "Tods85FzYMfhUVJM",
+    "database": "tb_test",
+    "port": "/var/run/mysqld/mysqld.sock"
+  },
+  "SERVER": {
+    "https": false,
+    "ssl": {
+      "key": "/etc/nginx/ssl/minbizeed_com.key",
+      "cert": "/etc/nginx/ssl/minbizeed_com.crt"
+    }
+  }
+}

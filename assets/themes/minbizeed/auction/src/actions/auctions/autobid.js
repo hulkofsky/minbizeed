@@ -37,7 +37,7 @@ var db = require("../../core/database.js"),
 function makeAutoBid($id, $userId, $delay, $autoBidData) {
     var AUCTIONS = this;
 
-    console.log($autoBidData, 'jebat suka blyat')
+    console.log($autoBidData, 'jebat suka blyat make autobid')
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             db.getCurrentBidder($id).then(function ($bidder) {

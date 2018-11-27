@@ -3,6 +3,9 @@ var q        = require("q"),
     events   = require("../../core/events.js"),
     noop     = require("../../helpers/noop.js"),
     request  = require("request"),
+    emitUserGlobal = require("../socket/emit.user.global"),
+    server    = require("../../core/server.js"),
+    io = require("socket.io")(server),
     redisCl  = require("../../core/redis.js");
 
 module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on an auction
@@ -15,6 +18,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
      * @param $amount
      * @returns {*}
      */
+    
     function takeCredits($amount)
     {
         if ( $autobid && !$autobid_data.take_credits )
@@ -52,9 +56,24 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
         setTimeout(async function() {
 
+            
+            
             // NEW CODE
+            //check if user is winner 1 time today
+            const isWinner = await db.getTodaysWinner($userid)
+            const isWeekWinner = await db.getWeekWinner($userid)
+            const isBlocked = await db.getWeekWinner($userid)
+
+            if((isWinner.length > 0 || isWeekWinner.length >= 3)){
+                self.sockets.emitUserGlobal($userid, 'ALREADY_WON');
+                //console.log('Vzhuh i tvoya mamka idet nahui')
+                return
+            }
+            
+
             const lastBid = await db.getLastBid($id)       
-            if($userid == lastBid[0].uid){
+            if(lastBid[0] && $userid == lastBid[0].uid){
+                console.log('Vzhuh i ti idesh nahui')
                 return
             }
             // NEW CODE

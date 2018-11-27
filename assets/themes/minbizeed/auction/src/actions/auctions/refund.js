@@ -5,7 +5,7 @@ var q        = require("q"),
 
 module.exports = function($id) {
     var self = this;
-
+    console.log(this, 'this ebat v sraku sobaku')
     logger.log('verbose', '[%s]: Refunding credits for auction with id %s as it didn\'t reach minimum bid price.', INSTANCE, $id);
 
     q.allSettled([db.getAuctionData($id),

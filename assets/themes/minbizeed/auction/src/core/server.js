@@ -12,7 +12,7 @@ var auctions       = require("./auctions.js"),
     emitUser       = require("../actions/socket/emit.user"),
     emitUserGlobal = require("../actions/socket/emit.user.global.js"),
     isLogged       = require("../actions/auth/is.logged.js");
-
+    io = require("socket.io")
 /* ===================== METHODS ===========================*/
 module.exports = {
     storage: {

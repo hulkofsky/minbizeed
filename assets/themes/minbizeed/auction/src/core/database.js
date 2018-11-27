@@ -667,7 +667,7 @@ module.exports = {
             .toString();
 
         return this.query(query);
-    }
+    },
     // getAvatar: function ($id) {
     //     console.log($id, 'zaeblo');
     //     var query = squel
@@ -681,4 +681,123 @@ module.exports = {
     //         .toString();
     //     return this.query(query);
     // }
+
+    // getUserMaxBiddingAmount: function ($id) {
+    //     var query = squel
+    //         .select()
+    //         .from(table_prefix+'penny_assistant')
+    //         .where(['uid =', $id].join(""))
+    //         .order("date_made", false)
+    //         .toString();
+
+    //     return this.query(query);
+    // },
+
+    // getUserBids: function ($id) {
+    //     var query = squel
+    //         .select()
+    //         .from(table_prefix+'usermeta')
+    //         .where(['user_id =', $id, ` AND meta_key = \'user_credits\'`].join(""))
+    //         //.order("date_made")
+    //         .toString();
+
+    //     return this.query(query);
+    // },
+
+    getTodaysWinner: function ($id) {
+        var today = new Date
+        var dd = today.getDate()
+        var ddd = today.getDate()+1
+        var mm = today.getMonth()+1
+        var yy = today.getFullYear()
+        
+        console.log(today.getDay(), 'den nedeli blyat')
+
+        today = `${mm}/${dd}/${yy}`
+        tomorrow = `${mm}/${ddd}/${yy}`
+
+        poebat = (new Date(today).getTime()/1000)
+        poebat2 = (new Date(tomorrow).getTime()/1000)
+
+        var query = squel
+            .select()
+            .from(table_prefix+'penny_bids')
+            .where([`uid =${$id} AND date_made > ${poebat} AND date_made < ${poebat2} AND winner = 1`].join(""))
+            .toString();
+
+        return this.query(query);
+    },
+
+    getWeekWinner: function ($id) {
+        var today = new Date
+        var mm = today.getMonth()+1
+        var yy = today.getFullYear()
+        
+        switch(today.getDay()) {
+            case 0:
+                var weekStart = today.getDate()
+                var weekEnd = today.getDate()+6
+                break
+            case 1:
+                var weekStart = today.getDate()-1
+                var weekEnd = today.getDate()+5
+                break
+            case 2:
+                var weekStart = today.getDate()-2
+                var weekEnd = today.getDate()+4
+                break
+            case 3:
+                var weekStart = today.getDate()-3
+                var weekEnd = today.getDate()+3
+                break
+            case 4:
+                var weekStart = today.getDate()-4
+                var weekEnd = today.getDate()+2
+                break
+            case 5:
+                var weekStart = today.getDate()-5
+                var weekEnd = today.getDate()+1
+                break
+            case 6:
+                var weekStart = today.getDate()-6
+                var weekEnd = today.getDate()
+                break
+            default:
+                break
+        }
+
+        today = `${mm}/${weekStart}/${yy}`
+        tomorrow = `${mm}/${weekEnd}/${yy}`
+
+        poebat = (new Date(today).getTime()/1000)
+        poebat2 = (new Date(tomorrow).getTime()/1000)
+
+        var query = squel
+            .select()
+            .from(table_prefix+'penny_bids')
+            .where([`uid =${$id} AND date_made > ${poebat} AND date_made < ${poebat2} AND winner = 1`].join(""))
+            .toString();
+
+        return this.query(query);
+    },
+
+    isBlocked: function ($id) {
+        var today = new Date
+        var dd = today.getDate()
+        var mm = today.getMonth()+1
+        var yy = today.getFullYear()
+
+        today = `${mm}/${dd}/${yy}`
+
+        poebat = (new Date(today).getTime()/1000)
+        poebat2 = (new Date(tomorrow).getTime()/1000)
+
+        var query = squel
+            .select()
+            .from(table_prefix+'_usermeta')
+            .where([`uid =${$id} AND date_made > ${poebat} AND _user_status = 'blocked_daily' OR _user_status = 'blocked_weekly`].join(""))
+            .toString();
+
+        return this.query(query);
+    },
 };

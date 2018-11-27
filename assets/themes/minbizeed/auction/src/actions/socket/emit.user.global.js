@@ -3,11 +3,11 @@ var events   = require("../../core/events.js"),
 
 module.exports = function($user, $name, $data, $room, isMaster) { // Emit the Master event to workers
     var $payload = {};
-
     $payload["user"] = $user || null;
     $payload["name"] = $name || null;
     $payload["data"] = $data || null;
     $payload["room"] = $room || null;
+
 
     if ( typeof $room === "boolean" )
     {
@@ -17,6 +17,7 @@ module.exports = function($user, $name, $data, $room, isMaster) { // Emit the Ma
 
     if ( !isMaster )
     {
+        console.log('sending piece of shit')
         setImmediate(function() {
             process.send({
                 cmd: 'emit-master',

@@ -1,6 +1,6 @@
 var db = require("../../core/database.js");
 
-module.exports = function ($id, $userid, $amount) {
+module.exports = async function ($id, $userid, $amount) {
     var self  = this;
     var error = false;
 

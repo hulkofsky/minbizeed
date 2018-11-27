@@ -1,10 +1,21 @@
 var db = require("../../core/database.js");
 
-module.exports = function ($id, $userid) {
+module.exports = async function ($id, $userid) {
     var self  = this;
     var error = false;
 
-    console.log('start avtobid ebat ego v anal')
+    // const maxBiddingAmount = await db.getUserMaxBiddingAmount($userid)
+    // const userBids = 1//await db.getUserBids($userid)
+    
+    // console.log(maxBiddingAmount[0].credits_start, typeof maxBiddingAmount, 'pizda ruly')
+    // console.log('start avtobid ebat ego v anal')
+
+
+    // if(maxBiddingAmount[0].credits_start>=userBids.meta_value){
+    //     console.log('doctor ebaklak')
+    //     return
+    // }
+
     if ( isNaN($id) )
     {
         logger.info('warn',

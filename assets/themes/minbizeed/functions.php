@@ -177,13 +177,21 @@ function ds_extra_profile_fields( $user ) {
     ?>
 
     <table class="form-table">
-    <th>Blocking User Status: <?php echo $status_usr; ?></th>
         <tr>
-            <th><label for="usr_bl"><?php esc_html_e( 'Block User', 'textdomain' ); ?></label></th>
+            <th><label for="usr_bl"><?php _e( 'Block User Status', 'minbized' ); ?></label></th>
             <td>
+            <?php 
+            $block_options = array(
+                'unblocked' => 'Unblocked',
+                'blocked_daily' => 'Blocked Daily',
+                'blocked_weekly' => 'Blocked Weekly'
+
+            );
+            ?>
             <select name="blocking_user" id="usr_bl">
-            <option value="block">Block</option>
-            <option value="unblock">Unblock</option>
+            <?php foreach( $block_options as $key => $option ): ?>
+                <option value="<?php echo $key; ?>" <?php echo ($status_usr === $key) ? 'selected' : ''; ?>><?php _e($option, 'minbized') ?></option>
+            <?php endforeach; ?>
             </select>
             </td>
         </tr>
@@ -201,3 +209,62 @@ function extr_profile_fields( $user_id ) {
 
    update_usermeta( $user_id, '_user_status', $_POST['blocking_user'] );
 }
+/**
+ * Set blocked To date
+ */
+add_action( 'show_user_profile', 'block_user_to' );
+add_action( 'edit_user_profile', 'block_user_to' );
+
+function block_user_to( $user ) {
+    $start_block_date = get_the_author_meta( '_blocked_to', $user->ID );
+    //$start_block_time = get_the_author_meta( '_blocked_to', $user->ID );
+
+    $retDate = date("Y-m-d H:i:s", $start_block_date);
+
+            ?>
+    <table class="form-table_usr_date_block form-table">
+        <tr>
+        <th><label for="blocked_date"><?php _e('Blocked Until: ', 'minbizeed') ?></label></th>
+            <td>
+            <input type="text" name="user_blocked_date" id="blocked_date" value="<?php echo $retDate; ?>">
+            <input type="hidden" name="get_formatted_date" id="form_date_formatted" value="">
+            <div class="dateC">
+                <h2><?php _e('User will be unblocked in:', 'minbizeed'); ?> <span id="countdown"></span>
+                </h2>
+            </div>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+add_action( 'personal_options_update', 'svae_usr_blocked_to' );
+add_action( 'edit_user_profile_update', 'svae_usr_blocked_to' );
+
+function svae_usr_blocked_to( $user_id ) {
+
+   if ( !current_user_can( 'edit_user', $user_id ) ){
+       return false;
+    }
+       if(!empty($_POST['get_formatted_date'])){
+        $yourdate = $_POST['get_formatted_date'];
+        $stamp = strtotime($yourdate);
+        $time_in_ms_to_save = $stamp;
+       }
+
+   update_usermeta( $user_id, '_blocked_to', $time_in_ms_to_save );
+}
+/**
+ * create databese field on user registration
+ */
+add_action( 'user_register', 'fill_db_user_registration' );
+function fill_db_user_registration( $user_id ) {
+    update_user_meta( $user_id, '_blocked_to', strtotime( date( 'Y/m/d g:i:s' ) ) );
+    update_user_meta( $user_id, '_user_status', 'unblocked');
+}
+
+function add_datepicker_admin(){
+    wp_enqueue_script('jq-ui-datetime', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.js', array('jquery'), '1.6.3');
+    wp_enqueue_script('custom-admin-scripts', get_template_directory_uri() . '/js/admin_scripts.js');
+}
+add_action('admin_enqueue_scripts', 'add_datepicker_admin');

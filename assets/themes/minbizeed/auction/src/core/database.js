@@ -800,4 +800,37 @@ module.exports = {
 
         return this.query(query);
     },
+
+    blockUser: function ($id) {
+        var today = new Date
+        var dd = today.getDate()
+        var mm = today.getMonth()+1
+        var yy = today.getFullYear()
+
+        if(this.getWeekWinner($id).length == 3){
+            today = `${mm}/${dd+7}/${yy}`
+            blocked_to = (new Date(today).getTime()/1000)
+            
+            var query = squel.insert()
+            .into(table_prefix+'usermeta')
+            .setFieldsRows([
+                { meta_key: "_user_status", user_id: $id,  meta_value: "blocked_weekly"},
+                { meta_key: "_blocked_to", user_id: $id,  meta_value: blocked_to},
+            ])
+            .toString()
+        } else {
+            today = `${mm}/${dd+1}/${yy}`
+            blocked_to = (new Date(today).getTime()/1000)
+
+            var query = squel.insert()
+            .into(table_prefix+'usermeta')
+            .setFieldsRows([
+                { meta_key: "_user_status", user_id: $id,  meta_value: "blocked_daily"},
+                { meta_key: "_blocked_to", user_id: $id,  meta_value: blocked_to},
+            ])
+            .toString()
+        }
+
+        return this.query(query);
+    },
 };

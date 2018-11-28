@@ -421,6 +421,23 @@ AUCTION.prototype = {
     bindSocketEvents: function () {
         var self = this;
 
+        this.socket.on('ALREADY_WON', function ($data) {
+            if ($('.popup_msg').length) {
+                $('.popup_msg').append('<p class="auction_messages">You already won the maximum allowed auctions for this day/week, you\'re not currently allowed to bid anymore</p>');
+                $.magnificPopup.open({
+                    items: {
+                        src: '.popup_msg'
+                    },
+                    type: 'inline',
+                    closeOnBgClick: false,
+                    closeMarkup: '<button title="Close (Esc)" type="button" class="mfp-close fa fa-close"></button>',
+                });
+            }
+            $('.mfp-close').on('click', function(){
+                $(this).parent('.popup_msg').find('.auction_messages').remove();
+            });
+        });
+        
         this.socket.on('AUCTION_REFUNDED', function ($data) {
             if ($('.popup_msg').length) {
                 $('.popup_msg').append('<p class="auction_messages">Auction : ' + $data.auction + ' has been closed. Your ' + $data.bids + ' bids has been refunded to your account.</p>');
@@ -436,6 +453,7 @@ AUCTION.prototype = {
         });
 
         this.socket.on('NEW_BID', function ($data) {
+            
             self.handleBidData($data);
             $('.bfh-countries').each(function () {
                 var $countries;
@@ -445,6 +463,7 @@ AUCTION.prototype = {
         });
 
         this.socket.on('AUTOBID_OK', function ($data) { // this is sent only to current user
+            console.log('ON NEW BID CYKA BLYAT')
             self.handleAutobidData($data);
         });
 
@@ -631,7 +650,7 @@ AUCTION.prototype = {
         });
 
         this.socket.on('AUCTION_WON', function ($data) {
-            console.log($data);
+            console.log('AUCTION_WON PIDRILA EBANAYA');
             $('.bid[data-id="' + $data.id + '"]').find(".auction-current-bidnow .bid_now_button").addClass("no_link_btn");
             $('.bid[data-id="' + $data.id + '"]').find(".bid_now_button").addClass("no_link_btn");
             //$('.bid[data-id="' + $data.id + '"]').find(".auction-current-bidnow .bid_now_button").removeClass("mm_bid_mm");

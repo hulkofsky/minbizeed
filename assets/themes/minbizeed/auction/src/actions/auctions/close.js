@@ -13,7 +13,6 @@ var q        = require("q"),
  */
 function handleRewardType($id, winner) {
     var self = this;
-    console.log('handle rewards sdffkpjsdfnsd')
     db.isBidRewardAuction($id).then(function(isBidReward) {
         if ( !isBidReward )
             return;
@@ -33,10 +32,8 @@ function handleRewardType($id, winner) {
                 '[%s]: The ended auction was a bids reward auction with a value of [%s bids]. Giving the user the won bids.',
                 INSTANCE,
                 amount );
-
             
-                
-            db.incrementUserCredits(winner, amount).then(function() {
+                db.incrementUserCredits(winner, amount).then(function() {
                 logger.log('info',
                     '[%s]: Successfully given user with id %s [%s bids].',
                     INSTANCE,
@@ -92,12 +89,7 @@ function handleRewardType($id, winner) {
 
 module.exports = async function($id) {
     var self = this;
-
-    console.log("auk viigran jebat")
-    console.log(await db.getTodaysWinner(), 'auk viigran suka blyat')
-
     
-
     logger.log('info',
         '[%s]: Timer on auction with id %s has finished, closing auction and setting the winner.',
         INSTANCE,
@@ -115,7 +107,6 @@ module.exports = async function($id) {
     ]).spread(function (priceData, auctionWinner, auctionData) {
         if (auctionWinner.state === "fulfilled")
         {
-            console.log(auctionWinner, 'auction winner')
             var minimumPrice = Number(priceData.value[2].meta_value) || 0,
                 currentBids  = Number(priceData.value[1].meta_value) || 0,
                 startPrice   = Number(priceData.value[0].meta_value) || 0,
@@ -126,6 +117,17 @@ module.exports = async function($id) {
 
             if ( auctionWinner.value.winner !== 0 && isSatisfied )
             {
+                 //NEW CODE
+                db.blockUser(auctionWinner.value.winner).then(function(){
+                
+                    logger.log('info',
+                        '[%s]: Successfully blocked user with id %s [%s bids].',
+                        INSTANCE,
+                        winner,
+                        amount );
+                })
+                //NEW CODE
+
                 db.getUser(auctionWinner.value.winner).then(function ($user) {
                     self.sockets.emitUserGlobal(auctionWinner.value.winner, 'AUCTION_WON', {
                         id: $id,

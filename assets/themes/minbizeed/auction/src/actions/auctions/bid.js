@@ -25,13 +25,14 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
         {
             return Promise.resolve();
         }
-
+        console.log($autobid_data, 'autobid take credits')
         if ( $autobid && $autobid_data.take_credits )
         {
-            return db.decrementUserCredits($userid, $amount);
-        }
+            console.log('db decrement blocked 1')
+            //return db.decrementUserCredits($userid, $amount);
+        } 
 
-        return db.decrementUserCredits($userid, $amount);
+        return// db.decrementUserCredits($userid, $amount);
     }
 
     /**
@@ -73,6 +74,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
             const lastBid = await db.getLastBid($id)       
             if(lastBid[0] && $userid == lastBid[0].uid){
+                self.sockets.emitUserGlobal($userid, 'CAN_NOT_BID');
                 console.log('Vzhuh i ti idesh nahui')
                 return
             }
@@ -120,7 +122,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
                         if ( $ended[0].meta_value == 0 )
                         {
-                            q.allSettled([db.getUser($userid), db.getAuctionData($id)]).spread(function ($user, $auction) {
+                            q.allSettled([db.getUser($userid), db.getAuctionData($id)]).spread(async function ($user, $auction) {
                                 if ( $auction.value.length > 0 && $user.value.length > 0 )
                                 {
                                 
@@ -140,6 +142,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
                                     if ( ( !$autobid ? ( userCredits >= auctionMultiplier ) : true )
                                          && ( $autobid ? ( $autobid_data.take_credits ? ( autoBidsLeft >= auctionMultiplier ) : true ) : true ) )
                                     {
+                                          
                                         redisCl.get('AUCTION_CLOSED_' + $id, function(err, isClosed) {
 
                                             if ( isClosed )
@@ -166,7 +169,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
                                                 {
                                                     /* code changes for _penny_assistant table */
                                                     db.incrementCreditsCurrent($id, $userid, auctionMultiplier).then(function () {
-
+                                                        console.log('pezda sluchilas')
                                                         logger.log('info',
                                                             '[%s]: User with id %s has auto bid on auction with id %s on %ss time left.',
                                                             INSTANCE,
@@ -176,8 +179,8 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
                                                         self.sockets.emitUserGlobal($userid, 'AUTO_BID_OK', {
                                                             id: $id,
-                                                            bids_left: autoBidsLeft - auctionMultiplier,
-                                                            credits: userCredits - auctionMultiplier
+                                                            bids_left: autoBidsLeft,// - auctionMultiplier,
+                                                            credits: userCredits// - auctionMultiplier
                                                         }, self.isMaster);
 
                                                     });
@@ -219,7 +222,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
                                                         totalCreditsToBeUsed );
                                                 });
 
-                                                redisCl.decr('AUCTION_BIDS_IN_PROGRESS_' + $id, function (err, bidsInProgress) {
+                                                redisCl.decr('AUCTION_BIDS_IN_PROGRESS_' + $id, async function (err, bidsInProgress) {
                                                     logger.log('info', '[%s]: Bids left in current auction queue: %s', INSTANCE, bidsInProgress);
 
                                                     self.sockets.emitGlobal('NEW_BID', { // Tell the users there's a new bid and update the clients
@@ -232,9 +235,19 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
                                                         avatar: userAvatar
                                                     }, ['GLOBAL', 'AUCTION_' + $id], self.isMaster);
 
-                                                    self.sockets.emitUserGlobal($userid, 'BID_OK', {
-                                                        credits: userCredits - auctionMultiplier
-                                                    }, self.isMaster);
+                                                    //NEW CODE
+                                                    if (!$autobid){
+                                                        console.log(!$autobid, 'autobid')
+                                                        console.log($userid, auctionMultiplier, 'auctionMultiplier')
+                                                        await db.decrementUserCredits($userid, auctionMultiplier)
+                                                        self.sockets.emitUserGlobal($userid, 'BID_OK', {
+                                                            credits: userCredits - auctionMultiplier
+                                                        }, self.isMaster);
+                                                    }
+                                                    //NEW CODE
+                                                    // self.sockets.emitUserGlobal($userid, 'BID_OK', {
+                                                    //     credits: userCredits
+                                                    // }, self.isMaster);
                                                 });
                                             });
                                         });

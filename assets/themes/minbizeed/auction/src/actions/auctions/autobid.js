@@ -36,8 +36,7 @@ var db = require("../../core/database.js"),
 /*Fixing autobid 6 nov start*/
 function makeAutoBid($id, $userId, $delay, $autoBidData) {
     var AUCTIONS = this;
-
-    console.log($autoBidData, 'jebat suka blyat make autobid')
+    console.log('eshelme beshelme')
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             db.getCurrentBidder($id).then(function ($bidder) {
@@ -87,7 +86,6 @@ module.exports = function ($id) {
     db
         .loadAutobids($id)
         .then(function ($autoBids) {
-            console.log('ebanistika 2')
             /**
              * Users auto bids
              */
@@ -120,7 +118,6 @@ module.exports = function ($id) {
             });
         })
         .then(function() {
-            console.log('ebanistika 3')
             /**
              * Admin auto bids
              */
@@ -195,7 +192,6 @@ module.exports = function ($id) {
                         });
                     });
                     }).then(function() {
-                        console.log('ebanistika 4')
                         logger.log('info',
                             '[%s]: Processed the auto bids for auction with id %d.',
                             INSTANCE,

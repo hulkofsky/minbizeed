@@ -616,6 +616,7 @@ module.exports = {
     },
 
     decrementUserCredits: function ($id, $amount) {
+        console.log($amount, 'in db dec')
         var query = squel
             .update()
             .table(table_prefix+'usermeta')
@@ -627,6 +628,7 @@ module.exports = {
     },
 
     incrementUserCredits: function ($id, $amount) {
+        console.log($amount, 'in db inc')
         var query = squel
             .update()
             .table(table_prefix+'usermeta')
@@ -808,29 +810,92 @@ module.exports = {
         var yy = today.getFullYear()
 
         if(this.getWeekWinner($id).length == 3){
-            today = `${mm}/${dd+7}/${yy}`
-            blocked_to = (new Date(today).getTime()/1000)
+            var currentDate = new Date();
+            var blocked_to = currentDate.setDate(currentDate.getDate() + 7);
+
+            console.log(blocked_to, 'blocked to suka blyat')
             
-            var query = squel.insert()
-            .into(table_prefix+'usermeta')
-            .setFieldsRows([
-                { meta_key: "_user_status", user_id: $id,  meta_value: "blocked_weekly"},
-                { meta_key: "_blocked_to", user_id: $id,  meta_value: blocked_to},
-            ])
+            var query = squel.update()
+            .table(table_prefix+'usermeta')
+            .set("meta_value","blocked_weekly")
+            .where("meta_key = '_user_status'")
+            .where(`user_id = ${$id}`)
+            .toString()
+
+            var query2 = squel.update()
+            .table(table_prefix+'usermeta')
+            .set(`meta_value = ${blocked_to}`)
+            .where("meta_key = '_blocked_to'")
+            .where(`user_id = ${$id}`)
             .toString()
         } else {
-            today = `${mm}/${dd+1}/${yy}`
-            blocked_to = (new Date(today).getTime()/1000)
+            var currentDate = new Date();
+            var blocked_to = currentDate.setDate(currentDate.getDate() + 1);
+            console.log(blocked_to, 'blocked to suka blyat')
+             
+            this.setUserStatus($id, 'blocked_daily')
 
-            var query = squel.insert()
-            .into(table_prefix+'usermeta')
-            .setFieldsRows([
-                { meta_key: "_user_status", user_id: $id,  meta_value: "blocked_daily"},
-                { meta_key: "_blocked_to", user_id: $id,  meta_value: blocked_to},
-            ])
-            .toString()
+            this.setBlockedUntil($id, blocked_to)
         }
+
+        return this.query(query)
+    },
+
+    setUserStatus: function ($id, status) {
+        var query = squel.update()
+            .table(table_prefix+'usermeta')
+            .set("meta_value", status)
+            .where("meta_key = '_user_status'")
+            .where(`user_id = ${$id}`)
+            .toString()
+
+        return this.query(query)
+    },
+
+    setBlockedUntil: function ($id, date){
+        
+        var query = squel.update()
+            .table(table_prefix+'usermeta')
+            .set(`meta_value = '${date}'`)
+            .where("meta_key = '_blocked_to'")
+            .where(`user_id = ${$id}`)
+            .toString()
+        
+        return this.query(query)
+    },
+
+    updateReservedCredits: function ($id, $amount){
+        var query = squel.update()
+            .table(table_prefix+'usermeta')
+            .set(`meta_value = '${$amount}'`)
+            .where("meta_key = '_reserved_credits'")
+            .where(`user_id = ${$id}`)
+            .toString()
+        
+        return this.query(query)
+    },
+
+    getReservedCredits: function ($id){
+        console.log('vrode vse ok')
+        var query = squel
+            .select()
+            .from(table_prefix+'usermeta')
+            .where([`user_id =${$id} AND meta_key = '_reserved_credits'`].join(""))
+            .toString();
 
         return this.query(query);
     },
+
+    // deleteReservedCredits: function ($id){
+    //     console.log('entered delete reserved credits')
+    //     var query = squel
+    //         .update()
+    //         .from(table_prefix+'usermeta')
+    //         .set(`meta_value = 0`)
+    //         .where("meta_key = '_reserved_credits'")
+    //         .where(`user_id = ${$id}`)
+    //         .toString();
+
+    //     return this.query(query);
+    // }
 };

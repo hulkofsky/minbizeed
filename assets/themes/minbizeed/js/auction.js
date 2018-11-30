@@ -392,7 +392,7 @@ AUCTION.prototype = {
          */
         jQuery(document).on('click', '.autobid_start', function (e) {
             e.preventDefault();
-
+        
             var id     = jQuery('.autobid_cont').attr('id');
             var amount = jQuery('input[name="autobid_amount"]').val();
             if ( amount === "" )
@@ -412,6 +412,39 @@ AUCTION.prototype = {
 
                 return;
             }
+
+            //new code
+            const data = Number($('b.landing_balance').text())
+            const prevReservedCredits = parseInt($('input[name="autobid_amount"]').attr('placeholder'), 10)
+            
+            console.log(data-(amount-prevReservedCredits), 'parseint ebanii')
+
+            const newReservedAmount = data-(amount-prevReservedCredits)
+
+            console.log(amount, typeof amount, "amount jebanii")
+            if (newReservedAmount<0 || amount == 0) {
+                $('.popup_msg').append('<p class="auction_messages">Insufficient credits.</p>');
+                $.magnificPopup.open({
+                    items: {
+                        src: '.popup_msg'
+                    },
+                    type: 'inline',
+                    closeOnBgClick: false,
+                    closeMarkup: '<button title="Close (Esc)" type="button" class="mfp-close fa fa-close"></button>',
+                });
+            } else {
+                $('b.landing_balance').empty().text(newReservedAmount)
+                $('span.auto_bid_rem_amount').empty().text(newReservedAmount)
+                $('span.auto_bid_max_amount').empty().text(amount)
+                $('input[name="autobid_amount"]').attr('placeholder', `${amount} Bids`)
+            }
+            $('.mfp-close').on('click', function(){
+                $(this).parent('.popup_msg').find('.auction_messages').remove();
+            });
+
+            
+            //new code
+
             self.setAutobid(id, amount);
         });
     },
@@ -420,6 +453,23 @@ AUCTION.prototype = {
      */
     bindSocketEvents: function () {
         var self = this;
+
+        this.socket.on('CAN_NOT_BID', function ($data) {
+            if ($('.popup_msg').length) {
+                $('.popup_msg').append('<p class="auction_messages">Sorry, you can not bid more than one time in a row.</p>');
+                $.magnificPopup.open({
+                    items: {
+                        src: '.popup_msg'
+                    },
+                    type: 'inline',
+                    closeOnBgClick: false,
+                    closeMarkup: '<button title="Close (Esc)" type="button" class="mfp-close fa fa-close"></button>',
+                });
+            }
+            $('.mfp-close').on('click', function(){
+                $(this).parent('.popup_msg').find('.auction_messages').remove();
+            });
+        });
 
         this.socket.on('ALREADY_WON', function ($data) {
             if ($('.popup_msg').length) {
@@ -463,15 +513,14 @@ AUCTION.prototype = {
         });
 
         this.socket.on('AUTOBID_OK', function ($data) { // this is sent only to current user
-            console.log('ON NEW BID CYKA BLYAT')
             self.handleAutobidData($data);
         });
 
         this.socket.on('BID_OK', function ($data) {
+            console.log('BID_OK SUKA BLYAT')
             self.setCredits($data);
             $('.auto_bid_rem_amount').text($data.credits);
         });
-
 
         this.socket.on('AUTO_BID_ERROR', function($data) {
             $('.popup_msg_2').html($data.message);
@@ -489,7 +538,7 @@ AUCTION.prototype = {
         this.socket.on('AUTO_BID_OK', function($data) {
             $('.auto_bid_max_amount').text($data.bids_left);
             $('[name="autobid_amount"]').attr('placeholder', $data.bids_left + ' Bids');
-            $('.auto_bid_rem_amount').text($data.credits);
+            //$('.auto_bid_rem_amount').text($data.credits);
         });
 
         this.socket.on('AUTO_BID_PAUSED', function ($data) {

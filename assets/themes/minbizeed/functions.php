@@ -217,10 +217,10 @@ add_action( 'edit_user_profile', 'block_user_to' );
 
 function block_user_to( $user ) {
     $start_block_date = get_the_author_meta( '_blocked_to', $user->ID );
-    //$start_block_time = get_the_author_meta( '_blocked_to', $user->ID );
+    
+    $sec = $start_block_date / 1000;
 
-    $retDate = date("Y-m-d H:i:s", $start_block_date);
-
+    $retDate = date("Y-m-d H:i:s", $sec);
             ?>
     <table class="form-table_usr_date_block form-table">
         <tr>
@@ -249,7 +249,8 @@ function svae_usr_blocked_to( $user_id ) {
        if(!empty($_POST['get_formatted_date'])){
         $yourdate = $_POST['get_formatted_date'];
         $stamp = strtotime($yourdate);
-        $time_in_ms_to_save = $stamp;
+        $milFrom = $stamp * 1000;
+        $time_in_ms_to_save = $milFrom;
        }
 
    update_usermeta( $user_id, '_blocked_to', $time_in_ms_to_save );
@@ -259,9 +260,15 @@ function svae_usr_blocked_to( $user_id ) {
  */
 add_action( 'user_register', 'fill_db_user_registration' );
 function fill_db_user_registration( $user_id ) {
-    update_user_meta( $user_id, '_blocked_to', strtotime( date( 'Y/m/d g:i:s' ) ) );
+    $defDate = date( 'Y-m-d H:i:s' );
+    $dds = strtotime( $defDate );
+    $milisDefDate = $dds * 1000;
+
+    update_user_meta( $user_id, '_blocked_to', $milisDefDate );
     update_user_meta( $user_id, '_user_status', 'unblocked');
+    update_user_meta( $user_id, '_reserved_credits', '');
 }
+
 
 function add_datepicker_admin(){
     wp_enqueue_script('jq-ui-datetime', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.js', array('jquery'), '1.6.3');

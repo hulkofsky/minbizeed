@@ -58,7 +58,26 @@ module.exports = async function ($id, $userid, $amount) {
             if ( !error )
             {
                 /* code changes for _penny_assistant table */
-                db.setAutobid($id, $userid, $amount).then(function () {
+                db.setAutobid($id, $userid, $amount).then(async function () {
+                    console.log($amount, 'here is autobid setted AMOUNT')
+                    console.log($userid, 'ebanii user')
+                   const reservedCredits = await db.getReservedCredits($userid)
+
+                    
+                    console.log(reservedCredits, 'ebanii reserv')
+                    const amountToUpdate = reservedCredits[0].meta_value - $amount
+                    console.log(amountToUpdate, 'here is autobid amountToUpdate')
+
+                    //NEW CODE
+                    if(amountToUpdate<0){
+                        await db.decrementUserCredits($userid, Math.abs(amountToUpdate))
+                    }else if(amountToUpdate>0){
+                        await db.incrementUserCredits($userid, amountToUpdate)
+                    }
+                    
+                    await db.updateReservedCredits($userid, $amount)
+                    //NEW CODE
+                    
                     logger.log("info",
                         "[%s]: User with id %s has set an auto bid of %s bids on auction with id %s.",
                         INSTANCE,

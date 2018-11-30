@@ -161,15 +161,30 @@ module.exports = async function($id) {
                         $id );
 
                     // Email the losers
-                    db.getAuctionParticipants($id).then(function($users) {
+                    db.getAuctionParticipants($id).then(async function($users) {
                         var sentTo = [];
                         var count  = 0;
 
+
                         for(var l = 0, len1 = $users.length; l < len1; l++)
                         {
+                            
+                                
                             if ( $users[l].uid != auctionWinner.value.winner
                                 && sentTo.indexOf($users[l].uid) === -1 )
                             {
+
+                                 //NEW CODE
+                                 console.log($users[l].uid, 'not a winner detected')
+                                 const reservedCredits = await db.getReservedCredits($users[l].uid)
+                                 console.log(await db.getReservedCredits($users[l].uid), 'from db reserved credits row')
+                                 console.log(Number(reservedCredits[0].meta_value), 'reserved credits')
+ 
+                                 await db.incrementUserCredits($users[l].uid, Number(reservedCredits[0].meta_value))
+ 
+                                 await db.updateReservedCredits($users[l].uid, 0)
+                                 //NEW CODE
+
                                 count++;
                                 (function(auctionWinner, $id, l, count) {
                                     setTimeout(function() {

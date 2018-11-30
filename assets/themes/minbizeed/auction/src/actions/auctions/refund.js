@@ -5,19 +5,25 @@ var q        = require("q"),
 
 module.exports = function($id) {
     var self = this;
-    console.log(this, 'this ebat v sraku sobaku')
+    console.log('got into refund')
     logger.log('verbose', '[%s]: Refunding credits for auction with id %s as it didn\'t reach minimum bid price.', INSTANCE, $id);
+
+    
+
 
     q.allSettled([db.getAuctionData($id),
                   db.getAuctionBids($id),
-                  db.getPostData($id)]).spread(function($auction, $bids,$postdata) {
+                  db.getPostData($id)]).spread(async function($auction, $bids,$postdata) {
+
+        
+
         var usersBids  = {};
         var cost       = $auction.value[4].meta_value || 1;
 
         for(var i = 0, len = $bids.value.length; i < len; i++)
         {
             var current = $bids.value[i];
-
+            console.log(current, 'current suka')
             if ( !usersBids.hasOwnProperty(current.uid) )
             {
                 usersBids[current.uid]      = {};

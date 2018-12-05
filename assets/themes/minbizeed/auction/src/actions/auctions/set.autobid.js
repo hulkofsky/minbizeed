@@ -1,6 +1,6 @@
 var db = require("../../core/database.js");
 
-module.exports = async function ($id, $userid, $amount) {
+module.exports = async function ($id, $userid, $amount, $isNew) {
     var self  = this;
     var error = false;
 
@@ -59,23 +59,27 @@ module.exports = async function ($id, $userid, $amount) {
             {
                 /* code changes for _penny_assistant table */
                 db.setAutobid($id, $userid, $amount).then(async function () {
-                    console.log($amount, 'here is autobid setted AMOUNT')
-                    console.log($userid, 'ebanii user')
-                   const reservedCredits = await db.getReservedCredits($userid)
 
-                    
-                    console.log(reservedCredits, 'ebanii reserv')
-                    const amountToUpdate = reservedCredits[0].meta_value - $amount
-                    console.log(amountToUpdate, 'here is autobid amountToUpdate')
+                    let reservedCredits = await db.getReservedCredits($userid, $id)
+                    let amountToUpdate
 
+                    if (!Array.isArray(reservedCredits) || !reservedCredits.length) {
+                        console.log('no reserved credits')
+                        reservedCredits = 0
+                        amountToUpdate = -$amount
+                        db.setReservedCredits($userid, $id, 0)
+                    }else {
+                        amountToUpdate = reservedCredits[0].reserved_credits - $amount
+                    }
                     //NEW CODE
                     if(amountToUpdate<0){
+                        console.log('decrement')
                         await db.decrementUserCredits($userid, Math.abs(amountToUpdate))
                     }else if(amountToUpdate>0){
                         await db.incrementUserCredits($userid, amountToUpdate)
                     }
                     
-                    await db.updateReservedCredits($userid, $amount)
+                    await db.updateReservedCredits($userid, $id, $amount)
                     //NEW CODE
                     
                     logger.log("info",

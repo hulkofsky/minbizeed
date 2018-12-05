@@ -17,7 +17,6 @@ module.exports = function($user, $name, $data, $room, isMaster) { // Emit the Ma
 
     if ( !isMaster )
     {
-        console.log('sending piece of shit')
         setImmediate(function() {
             process.send({
                 cmd: 'emit-master',

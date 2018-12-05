@@ -5,7 +5,6 @@ var q        = require("q"),
 
 module.exports = function($id) {
     var self = this;
-    console.log('got into refund')
     logger.log('verbose', '[%s]: Refunding credits for auction with id %s as it didn\'t reach minimum bid price.', INSTANCE, $id);
 
     
@@ -23,7 +22,6 @@ module.exports = function($id) {
         for(var i = 0, len = $bids.value.length; i < len; i++)
         {
             var current = $bids.value[i];
-            console.log(current, 'current suka')
             if ( !usersBids.hasOwnProperty(current.uid) )
             {
                 usersBids[current.uid]      = {};

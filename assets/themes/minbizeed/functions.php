@@ -266,12 +266,40 @@ function fill_db_user_registration( $user_id ) {
 
     update_user_meta( $user_id, '_blocked_to', $milisDefDate );
     update_user_meta( $user_id, '_user_status', 'unblocked');
-    update_user_meta( $user_id, '_reserved_credits', '');
+    // update_user_meta( $user_id, '_reserved_credits', 0);
 }
-
 
 function add_datepicker_admin(){
     wp_enqueue_script('jq-ui-datetime', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.js', array('jquery'), '1.6.3');
     wp_enqueue_script('custom-admin-scripts', get_template_directory_uri() . '/js/admin_scripts.js');
 }
 add_action('admin_enqueue_scripts', 'add_datepicker_admin');
+
+
+function reserved_credits_table_function() {
+
+    global $wpdb;
+    $table_name = $wpdb->prefix. "reserved_credits";
+    global $charset_collate;
+    $charset_collate = $wpdb->get_charset_collate();
+    global $db_version;
+
+    if( $wpdb->get_var("SHOW TABLES LIKE '" . $table_name . "'") !=  $table_name)
+    {   $create_sql = "CREATE TABLE " . $table_name . " (
+            id INT(11) NOT NULL auto_increment,
+            user_id INT(11) NOT NULL ,
+            auction_id INT(11) NOT NULL,
+            reserved_credits INT(32) NOT NULL,
+            PRIMARY KEY (id))$charset_collate;";
+    }
+    require_once(ABSPATH . "wp-admin/includes/upgrade.php");
+    dbDelta( $create_sql );
+
+    if (!isset($wpdb->reserved_credits))
+    {
+        $wpdb->reserved_credits = $table_name;
+        $wpdb->tables[] = str_replace($wpdb->prefix, '', $table_name);
+    }
+
+}
+add_action( 'init', 'reserved_credits_table_function');

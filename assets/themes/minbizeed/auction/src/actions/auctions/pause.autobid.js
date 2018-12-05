@@ -4,8 +4,6 @@ module.exports = function ($id, $userid) {
     var self  = this;
     var error = false;
 
-    console.log('yakas huinya')
-
     if ( isNaN($id) )
     {
         logger.info('warn',
@@ -18,7 +16,6 @@ module.exports = function ($id, $userid) {
     }
 
     db.isAlreadyEnded($id).then(function ($ended) {
-        console.log(' already ended')
         if ($ended[0].meta_value == 1)
         {
             error = 'The auction has already ended.';
@@ -30,7 +27,6 @@ module.exports = function ($id, $userid) {
         }
 
         db.pauseAutobid($id, $userid).then(function () {
-            console.log('pause autobid')
             /* code changes for _penny_assistant table */
             logger.log("info",
                 "[%s]: User with id %s has paused the auto bid on auction with id %s.",

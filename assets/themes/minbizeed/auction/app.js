@@ -14,24 +14,5 @@ var server    = require("./src/core/server.js");
 
 const socket = require("socket.io")(server)
 
-// setTimeout(() => {
-//     console.log('eshelme beshelme')
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-//     socket.emit('AUCTION_WON', { message: 'Pishov na hui!' });
-
-// }, 1000);
-
 /* ================== CONSTRUCTOR ==========================*/
 server.init();

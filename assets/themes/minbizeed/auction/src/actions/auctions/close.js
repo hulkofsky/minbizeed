@@ -89,7 +89,7 @@ function handleRewardType($id, winner) {
 
 module.exports = async function($id) {
     var self = this;
-    
+    console.log($id, typeof $id, ' id jebanoe')
     logger.log('info',
         '[%s]: Timer on auction with id %s has finished, closing auction and setting the winner.',
         INSTANCE,
@@ -169,21 +169,17 @@ module.exports = async function($id) {
                         for(var l = 0, len1 = $users.length; l < len1; l++)
                         {
                             
-                                
+                            //NEW CODE
+                            const reservedCredits = await db.getReservedCredits($users[l].uid, $id)
+
+                            await db.deleteReservedCredits($users[l].uid, $id)
+                            //NEW CODE 
+                            
                             if ( $users[l].uid != auctionWinner.value.winner
                                 && sentTo.indexOf($users[l].uid) === -1 )
                             {
-
-                                 //NEW CODE
-                                 console.log($users[l].uid, 'not a winner detected')
-                                 const reservedCredits = await db.getReservedCredits($users[l].uid)
-                                 console.log(await db.getReservedCredits($users[l].uid), 'from db reserved credits row')
-                                 console.log(Number(reservedCredits[0].meta_value), 'reserved credits')
- 
-                                 await db.incrementUserCredits($users[l].uid, Number(reservedCredits[0].meta_value))
- 
-                                 await db.updateReservedCredits($users[l].uid, 0)
-                                 //NEW CODE
+                                
+                                await db.incrementUserCredits($users[l].uid, Number(reservedCredits[0].reserved_credits))
 
                                 count++;
                                 (function(auctionWinner, $id, l, count) {

@@ -127,7 +127,6 @@ module.exports = {
         });
     },
     loadAutobids: function ($id, $isEnding) {
-        console.log('load autobids database file')
         var query = squel
             .select()
             .from(table_prefix+'penny_assistant')
@@ -170,7 +169,6 @@ module.exports = {
     },
 
     isAdminAutobidAuction: function ($id) {
-        console.log('pososal li admin hui')
         var deffered = q.defer();
         var query = squel
             .select('meta_value')
@@ -616,7 +614,6 @@ module.exports = {
     },
 
     decrementUserCredits: function ($id, $amount) {
-        console.log($amount, 'in db dec')
         var query = squel
             .update()
             .table(table_prefix+'usermeta')
@@ -628,7 +625,6 @@ module.exports = {
     },
 
     incrementUserCredits: function ($id, $amount) {
-        console.log($amount, 'in db inc')
         var query = squel
             .update()
             .table(table_prefix+'usermeta')
@@ -670,41 +666,6 @@ module.exports = {
 
         return this.query(query);
     },
-    // getAvatar: function ($id) {
-    //     console.log($id, 'zaeblo');
-    //     var query = squel
-    //         .select()
-    //         .from(table_prefix+'posts')
-    //         .where(
-    //              ['post_author =', $id, ' AND post_type = \'attachment\''].join("")
-    //             //squel.expr().and(`post_author = ${$id}`).and("post_type = 'attachment'")//.join("")
-    //             )
-    //         .order("ID")
-    //         .toString();
-    //     return this.query(query);
-    // }
-
-    // getUserMaxBiddingAmount: function ($id) {
-    //     var query = squel
-    //         .select()
-    //         .from(table_prefix+'penny_assistant')
-    //         .where(['uid =', $id].join(""))
-    //         .order("date_made", false)
-    //         .toString();
-
-    //     return this.query(query);
-    // },
-
-    // getUserBids: function ($id) {
-    //     var query = squel
-    //         .select()
-    //         .from(table_prefix+'usermeta')
-    //         .where(['user_id =', $id, ` AND meta_key = \'user_credits\'`].join(""))
-    //         //.order("date_made")
-    //         .toString();
-
-    //     return this.query(query);
-    // },
 
     getTodaysWinner: function ($id) {
         var today = new Date
@@ -712,8 +673,6 @@ module.exports = {
         var ddd = today.getDate()+1
         var mm = today.getMonth()+1
         var yy = today.getFullYear()
-        
-        console.log(today.getDay(), 'den nedeli blyat')
 
         today = `${mm}/${dd}/${yy}`
         tomorrow = `${mm}/${ddd}/${yy}`
@@ -812,8 +771,6 @@ module.exports = {
         if(this.getWeekWinner($id).length == 3){
             var currentDate = new Date();
             var blocked_to = currentDate.setDate(currentDate.getDate() + 7);
-
-            console.log(blocked_to, 'blocked to suka blyat')
             
             var query = squel.update()
             .table(table_prefix+'usermeta')
@@ -831,7 +788,6 @@ module.exports = {
         } else {
             var currentDate = new Date();
             var blocked_to = currentDate.setDate(currentDate.getDate() + 1);
-            console.log(blocked_to, 'blocked to suka blyat')
              
             this.setUserStatus($id, 'blocked_daily')
 
@@ -864,38 +820,45 @@ module.exports = {
         return this.query(query)
     },
 
-    updateReservedCredits: function ($id, $amount){
+    updateReservedCredits: function ($id, $auction_id, $amount){
         var query = squel.update()
-            .table(table_prefix+'usermeta')
-            .set(`meta_value = '${$amount}'`)
-            .where("meta_key = '_reserved_credits'")
+            .table(table_prefix+'reserved_credits')
+            .set(`reserved_credits = '${$amount}'`)
+            .where(`auction_id = ${$auction_id}`)
             .where(`user_id = ${$id}`)
             .toString()
         
         return this.query(query)
     },
 
-    getReservedCredits: function ($id){
-        console.log('vrode vse ok')
+    getReservedCredits: function ($id, $auction_id){
         var query = squel
             .select()
-            .from(table_prefix+'usermeta')
-            .where([`user_id =${$id} AND meta_key = '_reserved_credits'`].join(""))
+            .from(table_prefix+'reserved_credits')
+            .where([`user_id =${$id} AND auction_id = ${$auction_id}`].join(""))
             .toString();
 
         return this.query(query);
     },
 
-    // deleteReservedCredits: function ($id){
-    //     console.log('entered delete reserved credits')
-    //     var query = squel
-    //         .update()
-    //         .from(table_prefix+'usermeta')
-    //         .set(`meta_value = 0`)
-    //         .where("meta_key = '_reserved_credits'")
-    //         .where(`user_id = ${$id}`)
-    //         .toString();
+    setReservedCredits: function($id, $auction_id, $amount){
+        var query =squel.insert()
+            .into(table_prefix+'reserved_credits')
+            .set("user_id", $id)
+            .set("auction_id", $auction_id)
+            .set("reserved_credits", $amount)
+            .toString()
+        
+        return this.query(query);
+    },
 
-    //     return this.query(query);
-    // }
+    deleteReservedCredits: function($id, $auction_id){
+        var query = squel.delete()
+            .from(table_prefix+'reserved_credits')
+            .where(`user_id = ${$id}`)
+            .where(`auction_id = ${$auction_id}`)
+            .toString()
+
+        return this.query(query);
+    }
 };

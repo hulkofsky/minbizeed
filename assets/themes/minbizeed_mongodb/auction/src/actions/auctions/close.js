@@ -65,7 +65,7 @@ function handleRewardType($id, winner) {
 
 module.exports = function($id) {
     var self = this;
-
+    console.log($id, 'sho to shas po pizde poidet')
     logger.log('info',
         '[%s]: Timer on auction with id %s has finished, closing auction and setting the winner.',
         INSTANCE,

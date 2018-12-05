@@ -36,7 +36,7 @@ var db = require("../../core/database.js"),
 /*Fixing autobid 6 nov start*/
 function makeAutoBid($id, $userId, $delay, $autoBidData) {
     var AUCTIONS = this;
-    console.log('eshelme beshelme')
+
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             db.getCurrentBidder($id).then(function ($bidder) {
@@ -90,7 +90,7 @@ module.exports = function ($id) {
              * Users auto bids
              */
 
-            return new Promise(function(resolve, reject) {
+            return new Promise(async function(resolve, reject) {
                 if ( !$autoBids.length )
                     return resolve();
 
@@ -102,10 +102,20 @@ module.exports = function ($id) {
 
                 for (var i = 0, len = $autoBids.length; i < len; i++)
                 {
+                    var rand = Math.round(0 - 0.5 + Math.random() * ((len-1) - 0 + 1))
+
+                    const lastBidder = await db.getLastBid($id)
+                    const currentUser = await db.getUser($autoBids[rand].uid)
+                    
+                    if (lastBidder[0].uid == currentUser[0].id){
+                        rand = Math.abs(rand - 1)
+                        i = i - 1
+                    }
+                    
                     makeAutoBid
-                        .bind(AUCTIONS)($id, $autoBids[i].uid, i * 10, {
-                            credits_start:   $autoBids[i].credits_start,
-                            credits_current: $autoBids[i].credits_current,
+                        .bind(AUCTIONS)($id, $autoBids[rand].uid, i * 10, {
+                            credits_start:   $autoBids[rand].credits_start,
+                            credits_current: $autoBids[rand].credits_current,
                             take_credits:    true
                         })
                         .then(function() {
@@ -121,12 +131,10 @@ module.exports = function ($id) {
             /**
              * Admin auto bids
              */
-
             return new Promise(function (resolve, reject) {
                 db.isAdminAutobidAuction($id).then(function ($isAdminAutoBid) {
                     if (!$isAdminAutoBid)
                         return resolve();
-
                     /**
                      * Get minimum price and auction's
                      * current price

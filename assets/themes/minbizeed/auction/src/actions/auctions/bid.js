@@ -25,10 +25,10 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
         {
             return Promise.resolve();
         }
-        console.log($autobid_data, 'autobid take credits')
+ 
         if ( $autobid && $autobid_data.take_credits )
         {
-            console.log('db decrement blocked 1')
+       
             //return db.decrementUserCredits($userid, $amount);
         } 
 
@@ -67,7 +67,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
             if((isWinner.length > 0 || isWeekWinner.length >= 3)){
                 self.sockets.emitUserGlobal($userid, 'ALREADY_WON');
-                //console.log('Vzhuh i tvoya mamka idet nahui')
+
                 return
             }
             
@@ -75,7 +75,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
             const lastBid = await db.getLastBid($id)       
             if(lastBid[0] && $userid == lastBid[0].uid){
                 self.sockets.emitUserGlobal($userid, 'CAN_NOT_BID');
-                console.log('Vzhuh i ti idesh nahui')
+
                 return
             }
             // NEW CODE
@@ -169,7 +169,7 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
                                                 {
                                                     /* code changes for _penny_assistant table */
                                                     db.incrementCreditsCurrent($id, $userid, auctionMultiplier).then(function () {
-                                                        console.log('pezda sluchilas')
+
                                                         logger.log('info',
                                                             '[%s]: User with id %s has auto bid on auction with id %s on %ss time left.',
                                                             INSTANCE,
@@ -237,8 +237,6 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
 
                                                     //NEW CODE
                                                     if (!$autobid){
-                                                        console.log(!$autobid, 'autobid')
-                                                        console.log($userid, auctionMultiplier, 'auctionMultiplier')
                                                         await db.decrementUserCredits($userid, auctionMultiplier)
                                                         self.sockets.emitUserGlobal($userid, 'BID_OK', {
                                                             credits: userCredits - auctionMultiplier

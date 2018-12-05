@@ -415,14 +415,26 @@ AUCTION.prototype = {
 
             //new code
             const data = Number($('b.landing_balance').text())
-            const prevReservedCredits = parseInt($('input[name="autobid_amount"]').attr('placeholder'), 10)
+            let prevReservedCredits
             
-            console.log(data-(amount-prevReservedCredits), 'parseint ebanii')
+            if(isNaN(parseInt($('input[name="autobid_amount"]').attr('placeholder'), 10))){
+                console.log('prevReservedCred = 0')
+                
+                prevReservedCredits = 0
+            }else{
+                console.log('prevReservedCreds = ok')
+                
+                prevReservedCredits = parseInt($('input[name="autobid_amount"]').attr('placeholder'), 10)
+            }
+            
+            console.log(data, typeof data, 'this is ur data')
+            console.log(amount, typeof Number(amount), 'this is ur amount')
+            console.log(prevReservedCredits, typeof prevReservedCredits, 'this is ur prevReservedCredits')
 
-            const newReservedAmount = data-(amount-prevReservedCredits)
+            const newReservedAmount = data-(Number(amount)-prevReservedCredits)
 
-            console.log(amount, typeof amount, "amount jebanii")
-            if (newReservedAmount<0 || amount == 0) {
+            console.log(newReservedAmount, typeof newReservedAmount, 'this is ur newReservedAmount')
+            if (newReservedAmount<0 || Number(amount) == 0) {
                 $('.popup_msg').append('<p class="auction_messages">Insufficient credits.</p>');
                 $.magnificPopup.open({
                     items: {
@@ -445,7 +457,7 @@ AUCTION.prototype = {
             
             //new code
 
-            self.setAutobid(id, amount);
+            self.setAutobid(id, Number(amount));
         });
     },
     /**
@@ -517,7 +529,6 @@ AUCTION.prototype = {
         });
 
         this.socket.on('BID_OK', function ($data) {
-            console.log('BID_OK SUKA BLYAT')
             self.setCredits($data);
             $('.auto_bid_rem_amount').text($data.credits);
         });
@@ -699,7 +710,6 @@ AUCTION.prototype = {
         });
 
         this.socket.on('AUCTION_WON', function ($data) {
-            console.log('AUCTION_WON PIDRILA EBANAYA');
             $('.bid[data-id="' + $data.id + '"]').find(".auction-current-bidnow .bid_now_button").addClass("no_link_btn");
             $('.bid[data-id="' + $data.id + '"]').find(".bid_now_button").addClass("no_link_btn");
             //$('.bid[data-id="' + $data.id + '"]').find(".auction-current-bidnow .bid_now_button").removeClass("mm_bid_mm");

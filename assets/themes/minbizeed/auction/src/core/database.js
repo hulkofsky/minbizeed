@@ -742,7 +742,7 @@ module.exports = {
         return this.query(query);
     },
 
-    isBlocked: function ($id) {
+    isStillBlocked: function ($id) {
         var today = new Date
         var dd = today.getDate()
         var mm = today.getMonth()+1
@@ -750,13 +750,22 @@ module.exports = {
 
         today = `${mm}/${dd}/${yy}`
 
-        poebat = (new Date(today).getTime()/1000)
-        poebat2 = (new Date(tomorrow).getTime()/1000)
-
+        poebat = (new Date(today).getTime())
+                    
         var query = squel
             .select()
-            .from(table_prefix+'_usermeta')
-            .where([`uid =${$id} AND date_made > ${poebat} AND _user_status = 'blocked_daily' OR _user_status = 'blocked_weekly`].join(""))
+            .from(table_prefix+'usermeta')
+            .where([`user_id = ${$id} AND (meta_key = '_blocked_to' AND meta_value > ${poebat})`].join(""))
+            .toString();
+
+        return this.query(query);
+    },
+
+    isStatusBlocked: function ($id) {
+        var query = squel
+            .select()
+            .from(table_prefix+'usermeta')
+            .where([`user_id = ${$id} AND (meta_key = '_user_status' AND (meta_value = 'blocked_daily' OR meta_value = 'blocked_weekly'))`].join(""))
             .toString();
 
         return this.query(query);

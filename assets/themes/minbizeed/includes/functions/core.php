@@ -309,18 +309,18 @@ function decreaseBids($uid, $amount, $reason)
             break;
     endswitch;
 }
-function rest_status_field_user() {
-    register_rest_field( 'user',
-       '_user_status',
-       array(
-           'get_callback'  => 'get_user_status_field',
-           'update_callback'   => null,
-           'schema'            => null,
-        )
-    );
-    }
-    add_action( 'rest_api_init', 'rest_status_field_user' );
+// function rest_status_field_user() {
+//     register_rest_field( 'user',
+//        '_user_status',
+//        array(
+//            'get_callback'  => 'get_user_status_field',
+//            'update_callback'   => null,
+//            'schema'            => null,
+//         )
+//     );
+//     }
+//     add_action( 'rest_api_init', 'rest_status_field_user' );
     
-    function get_user_status_field( $user, $field_name, $request ) {
-       return get_user_meta( $user[ 'id' ], $field_name, true );
-    }
+//     function get_user_status_field( $user, $field_name, $request ) {
+//        return get_user_meta( $user[ 'id' ], $field_name, true );
+//     }

@@ -37,7 +37,7 @@ module.exports = async function ($id, $userid, $amount, $isNew) {
             }, ['AUCTION_' + $id], self.isMaster);
         }
 
-        db.getUser($userid).then(function ($user) {
+        db.getUser($userid).then(async function ($user) {
             var userCredits = Number($user[1].meta_value) || 0;
 
             if ( !$amount )
@@ -49,8 +49,8 @@ module.exports = async function ($id, $userid, $amount, $isNew) {
             {
                 error = 'The amount has to be positive';
             }
-
-            if ( userCredits < $amount  )
+            
+            if ( await db.getReservedCredits($userid, $id) + userCredits < $amount ) // ERROR MESSAGE HERE
             {
                 error = 'Insufficient credits!';
             }

@@ -60,17 +60,20 @@ module.exports = function ($id, $userid, $autobid, $autobid_data) { // Bids on a
             
             
             // NEW CODE
-            //check if user is winner 1 time today
-            const isWinner = await db.getTodaysWinner($userid)
-            const isWeekWinner = await db.getWeekWinner($userid)
-            const isBlocked = await db.getWeekWinner($userid)
+            const isStillBlocked = await db.isStillBlocked($userid)
+            const isStatusBlocked = await db.isStatusBlocked($userid) 
 
-            if((isWinner.length > 0 || isWeekWinner.length >= 3)){
+            if((Array.isArray(isStillBlocked) && isStillBlocked.length) && (Array.isArray(isStatusBlocked) && isStatusBlocked.length)){
                 self.sockets.emitUserGlobal($userid, 'ALREADY_WON');
 
                 return
             }
             
+            // if((isWinner.length > 0 || isWeekWinner.length >= 3 )){
+            //     self.sockets.emitUserGlobal($userid, 'ALREADY_WON');
+
+            //     return
+            // }
 
             const lastBid = await db.getLastBid($id)       
             if(lastBid[0] && $userid == lastBid[0].uid){

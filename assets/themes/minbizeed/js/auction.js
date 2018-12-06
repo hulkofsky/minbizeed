@@ -280,6 +280,7 @@ AUCTION.prototype = {
                         closeMarkup: '<button title="Close (Esc)" type="button" class="mfp-close fa fa-close"></button>',
                     });
                 } else {
+                    console.log('ne moya huinya 2')
                     $('.popup_msg').html('Insufficient credits! <br>Click <a target="_blank" href="/buy-bids/">here</a> to charge');
                     $.magnificPopup.open({
                         items: {
@@ -434,7 +435,11 @@ AUCTION.prototype = {
             const newReservedAmount = data-(Number(amount)-prevReservedCredits)
 
             console.log(newReservedAmount, typeof newReservedAmount, 'this is ur newReservedAmount')
+            
+            console.log(newReservedAmount<0 || Number(amount) == 0,'pezda chi ne')
+
             if (newReservedAmount<0 || Number(amount) == 0) {
+                console.log('moya huinya')
                 $('.popup_msg').append('<p class="auction_messages">Insufficient credits.</p>');
                 $.magnificPopup.open({
                     items: {
@@ -446,9 +451,12 @@ AUCTION.prototype = {
                 });
             } else {
                 $('b.landing_balance').empty().text(newReservedAmount)
+                $('span.landing_balance').empty().text(newReservedAmount)
                 $('span.auto_bid_rem_amount').empty().text(newReservedAmount)
                 $('span.auto_bid_max_amount').empty().text(amount)
                 $('input[name="autobid_amount"]').attr('placeholder', `${amount} Bids`)
+
+                self.setAutobid(id, Number(amount));
             }
             $('.mfp-close').on('click', function(){
                 $(this).parent('.popup_msg').find('.auction_messages').remove();
@@ -457,7 +465,7 @@ AUCTION.prototype = {
             
             //new code
 
-            self.setAutobid(id, Number(amount));
+            
         });
     },
     /**
